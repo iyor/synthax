@@ -3,19 +3,20 @@ import { connect } from 'react-redux'
 import ActionCreators from '../actions/'
 import { Link } from 'react-router-dom'
 
-class Login extends Component {
+class Synth extends Component {
   render() {
     return (
       <div>
-        <Link to="/synth" >Click to login</Link>
+        <h2>In the synth</h2>
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(reducer) {
   return {
+    exampleCounter: reducer.state.example.get('example_counter') 
   }
 }
 
-export default connect(mapStateToProps, ActionCreators)(Login)
+export default connect(mapStateToProps, ActionCreators)(Synth)
