@@ -9,3 +9,7 @@ export const SPOTIFY_ME_FAILURE = 'SPOTIFY_ME_FAILURE'
 
 // Spotify actions
 export const SPOTIFY_SET_CURRENT_SONG = 'SPOTIFY_SET_CURRENT_SONG'
+
+// Synth actions
+export const SYNTH_KEY_DOWN = 'SYNTH_KEY_DOWN'
+export const SYNTH_KEY_UP = 'SYNTH_KEY_UP'
