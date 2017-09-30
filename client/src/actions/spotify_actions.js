@@ -24,3 +24,19 @@ export function setMe() {
     });
   };
 }
+
+/* get the user's currently playing song */
+export function setCurrentSong() {
+  return dispatch => {
+    spotifyApi.getMyCurrentPlayingTrack().then(data => {
+      spotifyApi.getTrack(data.item.uri.split(":").slice(-1)[0]).then(trackdata => {
+        dispatch({
+          type: types.SPOTIFY_SET_CURRENT_SONG,
+          uri: trackdata.uri,
+          name: trackdata.name,
+          artist: trackdata.album.artists[0].name
+        })
+      })
+    }).catch((e) => {console.log(e)})
+  }
+}

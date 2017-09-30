@@ -11,15 +11,19 @@ class Synth extends Component {
     console.log(accessToken)
     this.props.setTokens({accessToken, refreshToken})
     this.props.setMe()
+    this.props.setCurrentSong()
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown(e) {
+    console.log("Handling key press")
   }
 
   render() {
     console.log("Rendering synth")
-    console.log("This is the user name")
-    console.log(this.props.accessToken)
     return (
       <div>
-        <h2>Hi {this.props.displayName}</h2>
+        <h2>Now Playing: {this.props.currentTrackName} - {this.props.currentTrackArtist}</h2>
       </div>
     )
   }
@@ -28,7 +32,10 @@ class Synth extends Component {
 function mapStateToProps(state) {
   return {
     accessToken: state.spotify.accessToken,
-    displayName: state.spotify.user.display_name
+    displayName: state.spotify.user.display_name,
+    currentTrackUri: state.spotify.currentTrack.uri,
+    currentTrackName: state.spotify.currentTrack.name,
+    currentTrackArtist: state.spotify.currentTrack.artist
   }
 }
 

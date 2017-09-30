@@ -4,6 +4,11 @@ import * as types from '../actions/types';
 const initialState = {
   accessToken: null,
   refreshToken: null,
+  currentTrack: {
+    uri: null,
+    name: null,
+    artist: null
+  },
   user: {
     loading: false,
     country: null,
@@ -20,9 +25,6 @@ const initialState = {
   }
 };
 
-/**
- * Our reducer
- */
 export default function reduce(state = initialState, action) {
   switch (action.type) {
     // when we get the tokens... set the tokens!
@@ -45,6 +47,15 @@ export default function reduce(state = initialState, action) {
     // currently no failure state :(
     case types.SPOTIFY_ME_FAILURE:
       return state;
+
+    case types.SPOTIFY_SET_CURRENT_SONG:
+      return Object.assign({}, state, {
+        currentTrack: {
+          uri: action.uri,
+          name: action.name,
+          artist: action.artist
+        }
+      })
 
     default:
       return state;
