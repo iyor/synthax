@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 class Synth extends Component {
   render() {
+    console.log("Rendering synth")
     return (
       <div>
         <h2>In the synth</h2>

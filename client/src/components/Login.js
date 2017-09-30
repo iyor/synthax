@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 
 class Login extends Component {
   render() {
+    console.log("Rendering login")
     return (
       <div>
-        <Link to="/synth" >Click to login</Link>
+        <a href="/login">LOGIN</a>
       </div>
     )
   }

@@ -11,7 +11,7 @@ import reducers from './reducers/'
 import styles from './styles/main.less';
 import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { IndexRoute, Route, Switch } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 
 'use strict';
 
@@ -42,7 +42,7 @@ render(
       <div>
         <Route exact path="/" component={Login} />
         <Route path="/synth/:accessToken/:refreshToken" component={Synth} />
-				<Route path="/error/:errorMsg" component={ErrorComponent} />
+	<Route path="/error/:errorMsg" component={ErrorComponent} />
       </div>
     </ConnectedRouter>
   </Provider>,

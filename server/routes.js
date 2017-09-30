@@ -42,6 +42,7 @@ router.get('/login', (_, res) => {
  * is not good, redirect the user to an error page
  */
 router.get('/callback', (req, res) => {
+  console.log("IN THE CALLBACK IN ROUTEES")
   const { code, state } = req.query;
   const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
   // first do state validation
@@ -64,6 +65,7 @@ router.get('/callback', (req, res) => {
       });
 
       // we can also pass the token to the browser to make requests from there
+      console.log("REDIRECTING TO THE SYNTH")
       res.redirect(`/#/synth/${access_token}/${refresh_token}`);
     }).catch(err => {
       res.redirect('/#/error/invalid token');
