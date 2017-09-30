@@ -9,42 +9,34 @@ import Synth from './components/Synth'
 import ErrorComponent from './components/Error'
 import reducers from './reducers/'
 import styles from './styles/main.less';
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createHashHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Router, HashHistory, Route, Switch } from 'react-router-dom'
 
 'use strict';
 
 const history = createHistory()
 
-const reduxRouterMiddleware = routerMiddleware(history)
-
-const reducer = combineReducers({
-  state: reducers,
-  router: routerReducer
-})
-
 function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(
-      thunkMiddleware,
-      reduxRouterMiddleware
+      thunkMiddleware
     )
   )
-  return createStore(reducer, initialState, enhancer);
+  return createStore(reducers, initialState, enhancer);
 }
 
 const store = configureStore({})
 
 render(
   <Provider store = {store}>
-    <ConnectedRouter history = { history }>
+    <Router history = { history }>
       <div>
         <Route exact path="/" component={Login} />
         <Route path="/synth/:accessToken/:refreshToken" component={Synth} />
 	<Route path="/error/:errorMsg" component={ErrorComponent} />
       </div>
-    </ConnectedRouter>
+    </Router>
   </Provider>,
   document.getElementById('content')
 )

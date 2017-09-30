@@ -1,4 +1,4 @@
-import * as actions from '../actions/spotify_actions';
+import * as types from '../actions/types';
 
 /** The initial state; no tokens and no user info */
 const initialState = {
@@ -25,28 +25,28 @@ const initialState = {
  */
 export default function reduce(state = initialState, action) {
   switch (action.type) {
-  // when we get the tokens... set the tokens!
-  case actions.SPOTIFY_TOKENS:
-    const {accessToken, refreshToken} = action;
-    return Object.assign({}, state, {accessToken, refreshToken});
+    // when we get the tokens... set the tokens!
+    case types.SPOTIFY_TOKENS:
+      const {accessToken, refreshToken} = action;
+      return Object.assign({}, state, {accessToken, refreshToken});
 
-  // set our loading property when the loading begins
-  case actions.SPOTIFY_ME_BEGIN:
-    return Object.assign({}, state, {
-      user: Object.assign({}, state.user, {loading: true})
-    });
+    // set our loading property when the loading begins
+    case types.SPOTIFY_ME_BEGIN:
+      return Object.assign({}, state, {
+        user: Object.assign({}, state.user, {loading: true})
+      });
 
-  // when we get the data merge it in
-  case actions.SPOTIFY_ME_SUCCESS:
-    return Object.assign({}, state, {
-      user: Object.assign({}, state.user, action.data, {loading: false})
-    });
+    // when we get the data merge it in
+    case types.SPOTIFY_ME_SUCCESS:
+      return Object.assign({}, state, {
+        user: Object.assign({}, state.user, action.data, {loading: false})
+      });
 
-  // currently no failure state :(
-  case actions.SPOTIFY_ME_FAILURE:
-    return state;
+    // currently no failure state :(
+    case types.SPOTIFY_ME_FAILURE:
+      return state;
 
-  default:
-    return state;
+    default:
+      return state;
   }
 }
