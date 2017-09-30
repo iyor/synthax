@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ActionCreators from '../actions/'
+import { Link } from 'react-router-dom'
 
-class App extends Component {
+class Login extends Component {
   render() {
     return (
       <div>
-        <h1>DA APP</h1>
+        <Link to="/synth" >Click to login</Link>
       </div>
     )
   }
@@ -18,4 +19,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, ActionCreators)(App)
+export default connect(mapStateToProps, ActionCreators)(Login)
