@@ -51,6 +51,7 @@ class Synth extends Component {
       <div>
         <h2>Now Playing: {this.props.currentTrack.name} - {this.props.currentTrack.artist}</h2>
         <Keys />
+        <P5Wrapper sketch = {sketch} synth = {AdaptiveSynth}/>
       </div>
     )
   }

@@ -45,7 +45,9 @@ class AdaptiveSynth {
   }
 
   adapt(currentTrack) {
+    console.log(currentTrack)
     this.setKey(currentTrack.key, currentTrack.mode)
+    this.instrument.volume.value = currentTrack.loudness - 4
     this.instrument.set({
       "envelope" : {
 	"attack" : currentTrack.energy*currentTrack.energy*currentTrack.energy,
@@ -60,13 +62,14 @@ class AdaptiveSynth {
           "type": "triangle"
         }
       })
-      if (currentTrack.speechiness > 0.27)
-	this.instrument.set({
-	  "detune": -2400,
-	  "envelope": {
-	    "attack": 0.01
-	  }
-	})
+    }
+    if (currentTrack.speechiness > 0.27) {
+      this.instrument.set({
+	"detune": -2400,
+	"envelope": {
+	  "attack": 0.01
+	}
+      })
     }
     if (currentTrack.acousticness > 0.3) {
       this.instrument
@@ -81,6 +84,16 @@ class AdaptiveSynth {
       })
       this.instrument.volume.value = -16
     }
+    console.log(currentTrack.energy)
+    if (currentTrack.energy > 0.8) {
+      console.log("HIGH ENERGY")
+      this.instrument = new Tone.PolySynth(4, Tone.FMSynth).toMaster()
+      var pingPong = new Tone.PingPongDelay("8n", 0.1).toMaster();
+      this.instrument.connect(pingPong);
+    }
+
+    console.log("INSTRUMENTNENTNETNNT")
+    console.log(this.instrument)
     //let lfo = new Tone.LFO("4n", 400, 4000);
     //lfo.connect(this.instrument.frequency);
 
