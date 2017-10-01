@@ -21,7 +21,7 @@ export default function sketch (p) {
   };
 
   p.draw = function () {
-    p.clearRect(0, 0, p.width, p.height);
+    p.clear()
     p.background(0,0,0,0)
     p.stroke(255)
 
