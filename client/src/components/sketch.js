@@ -4,22 +4,27 @@ export default function sketch (p) {
 
   p.setup = function () {
     p.createCanvas(p.windowWidth, 400);
-    p.strokeWeight(10)
+    p.strokeWeight(6)
     p.background(0, 0, 0, 0);
-    p.stroke(25);
+    p.stroke(255);
   };
   
   p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
     if (props.synth){
+      var total = 0
+      for (var i = 0; i<4; i++) {
+        total = total + props.synth.getInstrument().voices[i].frequency.value
+      }
+      freq = total/4.0 * Math.PI / 180
       //freq = props.synth.frequency * Math.PI / 180;
-      freq = props.synth.getInstrument().voices[0].frequency.value
     }
   };
 
   p.draw = function () {
+    p.clearRect(0, 0, p.width, p.height);
+    p.background(0,0,0,0)
+    p.stroke(255)
 
-    p.strokeWeight(10) 
-    p.stroke(25)
     for (var i = 0; i < p.width; i++) {
       //scaling kickEnvelope value by 200 
 
@@ -30,6 +35,7 @@ export default function sketch (p) {
       //depending on x position
       var yDot = Math.sin((i / 60 * freq) + phase) * 50;
       p.point(i, p.height/2 + yDot);
+      phase += 1;
     }
   };
 };

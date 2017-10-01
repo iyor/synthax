@@ -41,14 +41,11 @@ class Synth extends Component {
   }
 
   render() {
-    console.log("Rendering synth")
     return (
       <div>
         <h2>Now Playing: {this.props.currentTrackName} - {this.props.currentTrackArtist}</h2>
-        {
-          //<P5Wrapper sketch={sketch} synth = {AdaptiveSynth}/>
-        }
         <Keys />
+        <P5Wrapper sketch={sketch} synth = {AdaptiveSynth}/>
       </div>
     )
   }
