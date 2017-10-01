@@ -1,5 +1,99 @@
 body {
-	margin: 20em;
+	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
+	animation: colorchange 20s; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+  -webkit-animation: colorchange 20s; /* Chrome and Safari */
+
+    @keyframes colorchange
+    {
+      0%   {background: red;}
+      33%  {background: blue;}
+      66%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: red;}
+      33%  {background: blue;}
+      66%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes textchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {color: red;}
+      33%  {color: blue;}
+      66%  {color: green;}
+      100% {color: red;}
+    }
+  h1 {
+    color: white;
+    margin-top: 4em;
+    text-align: center; 
+  }
+
+  
+  #loginline {
+    width: 100%;
+    margin-top: 580px;
+    border-bottom: 6px solid white;
+  
+  }
+  #login {
+    text-align: center; 
+    width: 100px;
+    margin: auto;
+    background-color: white;
+    -webkit-animation: textchange 20s;
+    margin-top: 100px;
+    font-size: 1.5em;
+    text-decoration: none;
+    padding: 1em;
+    border-radius: 300px;
+    display: block;
+    color: white;
+    border: 2px solid white;
+  }
+
+	h2 {
+		margin-top: 2em;
+		margin-left: 2em;
+		color: white;
+	}
+	.keyboard {
+		color: white;
+		width: 80%;
+		margin: auto;
+		margin-top: 30%;
+		text-align: center;
+		.key {
+			font-size: 2em;
+			display:inline-block;
+			border:2px solid white;
+			height: 45px;
+			width: 45px;
+			text-align: center;
+			padding: 8px;
+			box-sizing: initial;
+			border-radius: 50%;
+			margin: 0.2em;
+		}
+		.keyActive {
+			font-size: 2em;
+			text-shadow: 0px 0px 10px white;
+			box-shadow: 0px 0px 20px white;
+			display:inline-block;
+			border:2px solid white;
+			height: 45px;
+			width: 45px;
+			text-align: center;
+			padding: 8px;
+			box-sizing: initial;
+			border-radius: 50%;
+			margin: 0.2em;
+		}
+	}
 }

@@ -8,7 +8,9 @@ class Login extends Component {
     console.log("Rendering login")
     return (
       <div>
-        <a href="/login">LOGIN</a>
+        <h1>JAM ALONG TO YOUR FAVORITE SONG!</h1>
+        <div id="loginline"></div>
+        <a id="login" href="/login">TRY IT</a>
       </div>
     )
   }
