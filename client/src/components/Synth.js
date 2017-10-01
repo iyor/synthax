@@ -43,7 +43,7 @@ class Synth extends Component {
   render() {
     return (
       <div>
-        <h2>Now Playing: {this.props.currentTrackName} - {this.props.currentTrackArtist}</h2>
+        <h2>Now Playing: {this.props.currentTrack.name} - {this.props.currentTrack.artist}</h2>
         <Keys />
         <P5Wrapper sketch={sketch} synth = {AdaptiveSynth}/>
       </div>
@@ -55,9 +55,7 @@ function mapStateToProps(state) {
   return {
     accessToken: state.spotify.accessToken,
     displayName: state.spotify.user.display_name,
-    currentTrackUri: state.spotify.currentTrack.uri,
-    currentTrackName: state.spotify.currentTrack.name,
-    currentTrackArtist: state.spotify.currentTrack.artist,
+    currentTrack: state.spotify.currentTrack,
     downedKeys: state.synth.get('downedKeys')
   }
 }

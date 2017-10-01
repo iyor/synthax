@@ -13,7 +13,7 @@ export default function sketch (p) {
     if (props.synth){
       var total = 0
       for (var i = 0; i<4; i++) {
-        total = total + props.synth.getInstrument().voices[i].frequency.value
+        total = total + props.synth.getInstrument().voices[i].envelope.value * 2000
       }
       freq = total/4.0 * Math.PI / 180
       //freq = props.synth.frequency * Math.PI / 180;
@@ -33,7 +33,7 @@ export default function sketch (p) {
       var kickValue = 29
       //multiplying this value to scale the sine wave 
       //depending on x position
-      var yDot = Math.sin((i / 60 * freq) + phase) * 50;
+      var yDot = Math.sin((i / 60 ) + phase) * freq;
       p.point(i, p.height/2 + yDot);
       phase += 1;
     }

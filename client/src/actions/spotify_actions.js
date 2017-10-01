@@ -29,12 +29,26 @@ export function setMe() {
 export function setCurrentSong() {
   return dispatch => {
     spotifyApi.getMyCurrentPlayingTrack().then(data => {
-      spotifyApi.getTrack(data.item.uri.split(":").slice(-1)[0]).then(trackdata => {
-        dispatch({
-          type: types.SPOTIFY_SET_CURRENT_SONG,
-          uri: trackdata.uri,
-          name: trackdata.name,
-          artist: trackdata.album.artists[0].name
+      let id = data.item.uri.split(":").slice(-1)[0]
+      spotifyApi.getTrack(id).then(trackdata => {
+        spotifyApi.getAudioFeaturesForTrack(id).then(features => {
+          dispatch({
+            type: types.SPOTIFY_SET_CURRENT_SONG,
+            uri: trackdata.uri,
+            name: trackdata.name,
+            artist: trackdata.album.artists[0].name,
+            key: features.key,
+            danceability: features.danceability,
+            energy: features.energy,
+            loudness: features.loudness,
+            mode: features.mode,
+            speechiness: features.speechiness,
+            acousticness: features.acousticness,
+            instrumentalness: features.instrumentalness,
+            liveness: features.liveness,
+            valence: features.valence,
+            tempo: features.tempo
+          })
         })
       })
     }).catch((e) => {console.log(e)})

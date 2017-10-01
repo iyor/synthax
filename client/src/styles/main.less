@@ -1,41 +1,41 @@
 body {
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
-	animation: colorchange 20s infinite; /* animation-name followed by duration in seconds*/
-         /* you could also use milliseconds (ms) or something like 2.5s */
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  animation: colorchange 20s infinite; /* animation-name followed by duration in seconds*/
+  /* you could also use milliseconds (ms) or something like 2.5s */
   -webkit-animation: colorchange 20s infinite; /* Chrome and Safari */
 
-    @keyframes colorchange
-    {
-      0%   {background: red;}
-      33%  {background: blue;}
-      66%  {background: green;}
-      100% {background: red;}
-    }
+  @keyframes colorchange
+  {
+    0%   {background: #EE773E;}
+    33%  {background: #7594D1;}
+    66%  {background: #72DB68;}
+    100% {background: #EE773E;}
+  }
 
-    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-    {
-      0%   {background: red;}
-      33%  {background: blue;}
-      66%  {background: green;}
-      100% {background: red;}
-    }
+  @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+  {
+    0%   {background: #EE773E;}
+    33%  {background: #7594D1;}
+    66%  {background: #72DB68;}
+    100% {background: #EE773E;}
+  }
 
-    @-webkit-keyframes textchange /* Safari and Chrome - necessary duplicate */
-    {
-      0%   {color: red;}
-      33%  {color: blue;}
-      66%  {color: green;}
-      100% {color: red;}
-    }
+  @-webkit-keyframes textchange /* Safari and Chrome - necessary duplicate */
+  {
+    0%   {color: #EE773E;}
+    33%  {color: #7594D1;}
+    66%  {color: #72DB68;}
+    100% {color: #EE773E;}
+  }
+
   h1 {
     color: white;
     margin-top: 4em;
     text-align: center; 
   }
 
-  
   #loginline {
     width: 100%;
     margin-top: 400px;

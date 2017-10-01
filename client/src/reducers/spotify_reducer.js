@@ -7,7 +7,19 @@ const initialState = {
   currentTrack: {
     uri: null,
     name: null,
-    artist: null
+    artist: null,
+    key: null,
+    danceability : null,
+    energy : null,
+    key: null,
+    loudness : null,
+    mode : null,
+    speechiness : null,
+    acousticness : null,
+    instrumentalness : null,
+    liveness : null,
+    valence : null,
+    tempo : null,
   },
   user: {
     loading: false,
@@ -53,7 +65,18 @@ export default function reduce(state = initialState, action) {
         currentTrack: {
           uri: action.uri,
           name: action.name,
-          artist: action.artist
+          artist: action.artist,
+          key: action.key,
+          danceability: action.danceability,
+          energy: action.energy,
+          loudness: action.loudness,
+          mode: action.mode,
+          speechiness: action.speechiness,
+          acousticness: action.acousticness,
+          instrumentalness: action.instrumentalness,
+          liveness: action.liveness,
+          valence: action.valence,
+          tempo: action.tempo
         }
       })
 
