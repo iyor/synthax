@@ -64,6 +64,8 @@ class AdaptiveSynth {
       })
     }
     if (currentTrack.speechiness > 0.27) {
+      console.log("RRRRRRRRRRRRRRRAAAAAAAAAAAAAAAAAPPPPPPPPPPPPPP")
+      this.instrument.volume.value = -6
       this.instrument.set({
 	"detune": -2400,
 	"envelope": {
@@ -72,7 +74,6 @@ class AdaptiveSynth {
       })
     }
     if (currentTrack.acousticness > 0.3) {
-      this.instrument
       this.instrument.set({
 	"oscillator": {
 	  "type": "square"
@@ -84,16 +85,13 @@ class AdaptiveSynth {
       })
       this.instrument.volume.value = -16
     }
-    console.log(currentTrack.energy)
     if (currentTrack.energy > 0.8) {
       console.log("HIGH ENERGY")
       this.instrument = new Tone.PolySynth(4, Tone.FMSynth).toMaster()
       var pingPong = new Tone.PingPongDelay("8n", 0.1).toMaster();
       this.instrument.connect(pingPong);
+      this.instrument.volume.value = -10
     }
-
-    console.log("INSTRUMENTNENTNETNNT")
-    console.log(this.instrument)
     //let lfo = new Tone.LFO("4n", 400, 4000);
     //lfo.connect(this.instrument.frequency);
 
