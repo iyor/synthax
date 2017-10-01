@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ActionCreators from '../actions/'
 import { Link } from 'react-router-dom'
 import AdaptiveSynth from '../lib/synthesizer'
+import Keys from './Keys'
 import P5Wrapper from 'react-p5-wrapper'
 import sketch from './sketch'
 
@@ -47,6 +48,7 @@ class Synth extends Component {
         {
           //<P5Wrapper sketch={sketch} synth = {AdaptiveSynth}/>
         }
+        <Keys />
       </div>
     )
   }
