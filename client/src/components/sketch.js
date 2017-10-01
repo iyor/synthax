@@ -33,7 +33,7 @@ export default function sketch (p) {
       var kickValue = 29
       //multiplying this value to scale the sine wave 
       //depending on x position
-      var yDot = Math.sin((i / 60 ) + phase) * freq;
+      var yDot = Math.sin((i / 60 ) + phase) * freq * 100;
       p.point(i, p.height/2 + yDot);
       phase += 1;
     }

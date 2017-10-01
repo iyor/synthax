@@ -6,35 +6,85 @@ class AdaptiveSynth {
   constructor() {
     this.instrument = new Tone.PolySynth(4,Tone.Synth).toMaster()
     this.instrument.set("detune", -1200)
+    this.instrument.volume.value = -6
     this.notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5']
-    this.octave = 4
+    this.startOctave = 4
   }
 
   getInstrument() {
     return this.instrument 
   }
 
-  setKey(keyNr) {
+  setKey(keyNr, modality) {
     this.notes = []
-    let steps = [0, 2, 2, 1, 2, 2, 2, 1]
+    let steps = []
+    if (modality == 1)
+      steps = [0, 2, 2, 1, 2, 2, 2, 1]
+    else
+      steps = [0, 2, 1, 2, 2, 1, 2, 2]
+
     let alphabet = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-    let idx = 0
+    let idx = keyNr
     for (var step = 0; step < steps.length; step++) {
-      idx = idx + step
-      this.notes.push(alphabet[idx%12] + '4')
+      idx = idx + steps[step]
+      let octave = this.startOctave
+      if (idx >= 12)
+	octave++
+      this.notes.push(alphabet[idx%12] + octave)
     }
   }
   
   playTone(keyCode) {
     let tone = keymap[String.fromCharCode(keyCode).toLowerCase()]
-		console.log("Playing the tone")
     this.getInstrument().triggerAttack(this.notes[tone])
   }
 
   stopTone(keyCode) {
     let tone = keymap[String.fromCharCode(keyCode).toLowerCase()]
     this.getInstrument().triggerRelease(this.notes[tone])
-	}
+  }
+
+  adapt(currentTrack) {
+    this.setKey(currentTrack.key, currentTrack.mode)
+    this.instrument.set({
+      "envelope" : {
+	"attack" : currentTrack.energy*currentTrack.energy*currentTrack.energy,
+	"decay"  : 0 ,
+	"sustain"  : 1 ,
+	"release"  : 1
+      }
+    });
+    if (currentTrack.energy > 0.5){
+      this.instrument.set({
+        "oscillator":{
+          "type": "triangle"
+        }
+      })
+      if (currentTrack.speechiness > 0.27)
+	this.instrument.set({
+	  "detune": -2400,
+	  "envelope": {
+	    "attack": 0.01
+	  }
+	})
+    }
+    if (currentTrack.acousticness > 0.3) {
+      this.instrument
+      this.instrument.set({
+	"oscillator": {
+	  "type": "square"
+	},
+	"envelope": {
+	  "attack": 0.001,
+	  "release": 0.2,
+	} 
+      })
+      this.instrument.volume.value = -16
+    }
+    //let lfo = new Tone.LFO("4n", 400, 4000);
+    //lfo.connect(this.instrument.frequency);
+
+  }
 }
 
 export default new AdaptiveSynth()

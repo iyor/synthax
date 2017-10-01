@@ -18,8 +18,14 @@ class Synth extends Component {
     this.props.setCurrentSong()
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
+    AdaptiveSynth.adapt(this.props.currentTrack)
     window.addEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keyup', this.handleKeyUp);
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.currentTrack != this.props.currentTrack)
+      AdaptiveSynth.adapt(this.props.currentTrack)
   }
 
   handleKeyDown(e) {
@@ -45,7 +51,6 @@ class Synth extends Component {
       <div>
         <h2>Now Playing: {this.props.currentTrack.name} - {this.props.currentTrack.artist}</h2>
         <Keys />
-        <P5Wrapper sketch={sketch} synth = {AdaptiveSynth}/>
       </div>
     )
   }
